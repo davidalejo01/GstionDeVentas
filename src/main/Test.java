@@ -6,6 +6,7 @@
 package main;
 import dominio.Orden;
 import dominio.Producto;
+import interfaz.AccesoDatos;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -50,7 +51,10 @@ public class Test {
     }
     public static void main(String[] args) {
         menu();
-        
+        Orden orden = new Orden();
+        String nombreArchivo = "prueba.txt";
+        AccesoDatos.crearArchivo(nombreArchivo);
+        orden.mostarOrdenArchivo(null,nombreArchivo);
     }
     public static void menu(){
         int opcion=-1;
@@ -78,6 +82,8 @@ public class Test {
                     System.out.println("\n\nGracias por usar la aplicación\n");
                     break;
             }
+            break;
         }
     }
+    
 }

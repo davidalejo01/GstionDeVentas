@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package dominio;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 /**
  *
@@ -40,4 +44,22 @@ public class Orden {
     public static int getMAX_PRODUCTOS() {
         return MAX_PRODUCTOS;
     }
+    public void mostarOrdenArchivo(ArrayList<Producto> arrayList, String nombre) {
+        DecimalFormat df = new DecimalFormat("####.##");
+        PrintWriter salida = null;
+        File archivo = new File(nombre);
+
+        try {
+
+            salida = new PrintWriter(archivo);
+            for (int i = 0; i < artProductos.size(); i++) {
+                salida.println(artProductos.get(i).getIdProducto() +" "+ artProductos.get(i).getNombre()+" "+ df.format( artProductos.get(i).getPrecio()));
+            }            
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            salida.close();
+        }
+    }
+    
 }
